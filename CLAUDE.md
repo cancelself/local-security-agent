@@ -40,6 +40,19 @@ run every implemented phase. When they name a phase, run just that one.
   on one failed glob, which silently skips IOC checks. This has caused a missed
   check before.
 
+## Audit log
+
+Every phase run ends by writing an audit log to `audits/YYYY-MM-DD-<phase>.md`
+(follow `audits/TEMPLATE.md`) and committing it. The log records the inventory
+summary, findings with evidence, web sources used, remediation actually applied
+vs. pending, and the delta since the previous entry for that phase — so future
+runs can diff system state over time instead of starting cold. Read the most
+recent entry for the phase before running it.
+
+Privacy: this repo may be public. Logs describe the machine's software inventory
+and security tooling — summarize (counts, vendors, verdicts), never paste raw
+dumps, and omit hostnames, serials, usernames, and internal addresses.
+
 ## Tools
 
 - `tools/startup-inventory.sh` — read-only collection of everything that runs at

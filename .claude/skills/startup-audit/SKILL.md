@@ -89,3 +89,12 @@ Three buckets, most severe first:
    sweeps all negative), so "clean" is auditable.
 
 End with the list of web sources used for verification.
+
+## Step 6 — Persist the audit log
+
+Write `audits/YYYY-MM-DD-startup-audit.md` per `audits/TEMPLATE.md`: inventory
+summary (counts, not raw dumps), the three finding buckets with evidence, web
+sources, remediation applied vs. pending, and the delta against the previous
+startup-audit entry (new/removed/changed startup items). Commit it. Before
+Step 1 of any future run, read the latest entry so the delta is computable and
+prior "pending" remediations get followed up.

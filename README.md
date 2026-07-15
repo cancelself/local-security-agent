@@ -4,7 +4,9 @@ A Claude Code agent that audits a macOS machine for security issues, one phase
 at a time. Each phase is a [skill](.claude/skills/) with a read-only collection
 tool behind it; the agent analyzes the output, verifies findings against *live*
 web threat intel (published IOCs, current campaigns), and reports evidence-backed
-verdicts.
+verdicts. Each run is persisted to [`audits/`](audits/) — a dated, evidence-backed
+log of system state, findings, and remediation — so later runs diff against
+history instead of starting cold.
 
 ## Phases
 
