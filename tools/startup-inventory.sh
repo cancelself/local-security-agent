@@ -76,11 +76,19 @@ for b in /Library/PrivilegedHelperTools/*; do
   codesign -dv "$b" 2>&1 | grep -E 'Identifier=|TeamIdentifier=|Authority=Developer ID' || echo "(signature unreadable as this user)"
 done
 
-section "LOGIN ITEMS (System Events)"
-osascript -e 'tell application "System Events" to get the name of every login item' 2>&1
+# The two collectors below can raise GUI permission/password prompts
+# (System Events automation consent; sfltool elevation). Set
+# INVENTORY_NO_PROMPT=1 (as `make test` does) to skip them.
+if [ "${INVENTORY_NO_PROMPT:-0}" = "1" ]; then
+  section "LOGIN ITEMS + BTM"
+  echo "(skipped: INVENTORY_NO_PROMPT=1)"
+else
+  section "LOGIN ITEMS (System Events)"
+  osascript -e 'tell application "System Events" to get the name of every login item' 2>&1
 
-section "BACKGROUND TASK MANAGEMENT (sfltool dumpbtm; richer with sudo)"
-sfltool dumpbtm 2>&1 | head -200
+  section "BACKGROUND TASK MANAGEMENT (sfltool dumpbtm; richer with sudo)"
+  sfltool dumpbtm 2>&1 | head -200
+fi
 
 section "CURRENTLY LOADED NON-APPLE JOBS (launchctl list)"
 launchctl list | grep -viE 'com\.apple' || echo "none"

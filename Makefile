@@ -15,6 +15,6 @@ lint:
 	@echo "lint OK"
 
 test:
-	@echo "== smoke: inventory runs cleanly and is read-only =="
-	@bash tools/startup-inventory.sh > /dev/null
+	@echo "== smoke: inventory runs cleanly (prompt-prone collectors skipped) =="
+	@INVENTORY_NO_PROMPT=1 bash tools/startup-inventory.sh > /dev/null
 	@echo "test OK"
