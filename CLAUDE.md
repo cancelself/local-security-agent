@@ -43,15 +43,17 @@ run every implemented phase. When they name a phase, run just that one.
 ## Audit log
 
 Every phase run ends by writing an audit log to `audits/YYYY-MM-DD-<phase>.md`
-(follow `audits/TEMPLATE.md`) and committing it. The log records the inventory
-summary, findings with evidence, web sources used, remediation actually applied
-vs. pending, and the delta since the previous entry for that phase — so future
-runs can diff system state over time instead of starting cold. Read the most
-recent entry for the phase before running it.
+(follow `audits/TEMPLATE.md`). The log records the inventory summary, findings
+with evidence, web sources used, remediation actually applied vs. pending, and
+the delta since the previous entry for that phase — so future runs can diff
+system state over time instead of starting cold. Read the most recent entry for
+the phase before running it.
 
-Privacy: this repo may be public. Logs describe the machine's software inventory
-and security tooling — summarize (counts, vendors, verdicts), never paste raw
-dumps, and omit hostnames, serials, usernames, and internal addresses.
+Privacy: `audits/` is **gitignored** (only `TEMPLATE.md` is tracked) because the
+repo is public and logs describe this machine's software inventory and security
+tooling. Audit logs live on this machine only — never commit them, never work
+around the ignore rule. Still omit hostnames, serials, usernames, and internal
+addresses inside the logs themselves.
 
 ## Tools
 

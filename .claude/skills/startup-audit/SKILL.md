@@ -95,6 +95,7 @@ End with the list of web sources used for verification.
 Write `audits/YYYY-MM-DD-startup-audit.md` per `audits/TEMPLATE.md`: inventory
 summary (counts, not raw dumps), the three finding buckets with evidence, web
 sources, remediation applied vs. pending, and the delta against the previous
-startup-audit entry (new/removed/changed startup items). Commit it. Before
+startup-audit entry (new/removed/changed startup items). The `audits/` dir is
+gitignored (local-only — the repo is public); do NOT commit the log. Before
 Step 1 of any future run, read the latest entry so the delta is computable and
 prior "pending" remediations get followed up.

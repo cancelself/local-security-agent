@@ -1,0 +1,4 @@
+# Audit logs describe this machine's software inventory and security tooling —
+# they stay local. Only the template is tracked.
+audits/*
+!audits/TEMPLATE.md
